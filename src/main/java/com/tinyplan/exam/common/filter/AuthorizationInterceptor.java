@@ -32,13 +32,13 @@ public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
             Method method = handlerMethod.getMethod();
             // 检测方法是否被@Authorization注解
             if (method.getAnnotation(Authorization.class) != null) {
-                String auth = this.getTokenKey(request);
-                if (auth == null || !tokenService.checkToken(auth)) {
+                String token = this.getToken(request);
+                if (token == null || !tokenService.checkToken(token)) {
                     // 未通过验证
                     throw new BusinessException(ResultStatus.RES_ILLEGAL_TOKEN);
                 } else {
                     // 刷新时间
-                    tokenService.flushExpire(auth, 30);
+                    tokenService.flushExpire(token, 30);
                 }
             }
         }
@@ -50,8 +50,9 @@ public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
      * @param request 请求体
      * @return token
      */
-    private String getTokenKey(HttpServletRequest request) {
+    private String getToken(HttpServletRequest request) {
         // 从Header中获取x-token
-        return request.getHeader("x-token");
+        String token = request.getHeader("x-token");
+        return token == null? request.getHeader("Authorization") : token;
     }
 }

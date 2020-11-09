@@ -6,8 +6,6 @@ public interface TokenService {
 
     void setToken(String key, Object value);
 
-    void setToken(String key, Object value, int expire);
-
     void removeToken(String key);
 
     String generateToken(boolean isEncrypt, String... bases);

@@ -37,6 +37,7 @@ public class CORSFilter implements Filter {
             httpServletResponse.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
             httpServletResponse.setHeader("Access-Control-Max-Age", "0");
             httpServletResponse.setHeader("Access-Control-Allow-Credentials", "true");
+            httpServletResponse.setHeader("XDomainRequestAllowed", "1");
             httpServletResponse.setHeader("Access-Control-Allow-Headers",
                     String.join(",", new String[]{
                             "Origin", "No-Cache", "X-Requested-With",
@@ -44,7 +45,6 @@ public class CORSFilter implements Filter {
                             "Cache-Control", "Expires", "Content-Type",
                             "X-E4M-With", "x-token"})
             );
-            httpServletResponse.setHeader("XDomainRequestAllowed", "1");
         }
         chain.doFilter(request, response);
     }

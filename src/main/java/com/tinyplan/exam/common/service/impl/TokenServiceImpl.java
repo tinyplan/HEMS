@@ -1,6 +1,6 @@
 package com.tinyplan.exam.common.service.impl;
 
-import com.tinyplan.exam.common.constant.TokenConstant;
+import com.tinyplan.exam.common.properties.HEMSProperties;
 import com.tinyplan.exam.common.service.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -9,15 +9,18 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.SessionCallback;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
 import java.util.concurrent.TimeUnit;
 
 @Service
 public class TokenServiceImpl implements TokenService {
+    private final RedisTemplate<String, Object> redisTemplate;
+    private final HEMSProperties hemsProperties;
 
     @Autowired
-    private RedisTemplate<String, Object> redisTemplate;
+    public TokenServiceImpl(RedisTemplate<String, Object> redisTemplate, HEMSProperties hemsProperties){
+        this.redisTemplate = redisTemplate;
+        this.hemsProperties = hemsProperties;
+    }
 
     /**
      * 获取token对应的值
@@ -29,7 +32,7 @@ public class TokenServiceImpl implements TokenService {
     }
 
     public void setToken(String key, Object value){
-        this.setToken(key, value, TokenConstant.TOKEN_DEFAULT_EXPIRE);
+        this.setToken(key, value, hemsProperties.getTokenExpire());
     }
 
     /**
@@ -38,7 +41,7 @@ public class TokenServiceImpl implements TokenService {
      * @param value     值
      * @param expire    有效时间(单位: 分钟)
      */
-    public void setToken(String key, Object value, int expire){
+    private void setToken(String key, Object value, int expire){
         redisTemplate.execute(new SessionCallback<Object>() {
             @Override
             public Object execute(RedisOperations redisOperations) throws DataAccessException {
@@ -70,12 +73,6 @@ public class TokenServiceImpl implements TokenService {
      */
     // TODO 使用JWT
     public String generateToken(boolean isEncrypt, String... bases) {
-        StringBuilder builder = new StringBuilder();
-        for (String base : bases) {
-            builder.append(base).append(TokenConstant.TOKEN_KEY_SEPARATOR);
-        }
-        String source = builder.append(LocalDateTime.now().toEpochSecond(ZoneOffset.of("+8"))).toString();
-        // return isEncrypt ? EncryptUtil.encode(source, "SHA") : source;
         return "";
     }
 
