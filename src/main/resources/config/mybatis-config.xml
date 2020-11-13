@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-    <typeAliases>
-        <package name="com.tinyplan.exam.entity.po" />
-    </typeAliases>
+    <!--<typeAliases>
+        <package name="com.tinyplan.exam.portal.entity.po" />
+    </typeAliases>-->
 </configuration>

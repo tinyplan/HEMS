@@ -1,14 +1,16 @@
 package com.tinyplan.exam.common.service;
 
+import java.io.UnsupportedEncodingException;
+
 public interface TokenService {
 
-    Object getToken(String key);
+    Object getValueByToken(String key);
 
-    void setToken(String key, Object value);
+    void setValueByToken(String key, Object value);
 
-    void removeToken(String key);
+    void removeValueByToken(String key);
 
-    String generateToken(boolean isEncrypt, String... bases);
+    String generateToken(String userId) throws UnsupportedEncodingException;
 
     boolean checkToken(String key);
 

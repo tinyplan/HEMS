@@ -21,7 +21,7 @@ public class JWTTest {
         String token = JWTTest.sign("123", 3600);
         System.out.println(token);
         Map<String, Claim> claimMap = JWTTest.verifyToken(token);
-        System.out.println(claimMap);
+        System.out.println(claimMap.get("userId").asString());
     }
 
     public static String sign(String userId, long expire) throws UnsupportedEncodingException {
@@ -42,15 +42,9 @@ public class JWTTest {
         return builder.sign(Algorithm.HMAC256(SECRET));
     }
 
-    public static Map<String, Claim> verifyToken(String token) {
-        DecodedJWT jwt = null;
-        try {
-            JWTVerifier verifier = JWT.require(Algorithm.HMAC256(SECRET)).build();
-            jwt = verifier.verify(token);
-        } catch (Exception e) {
-            e.printStackTrace();
-            // token 校验失败, 抛出Token验证非法异常
-        }
+    public static Map<String, Claim> verifyToken(String token) throws UnsupportedEncodingException {
+        JWTVerifier verifier = JWT.require(Algorithm.HMAC256(SECRET)).build();
+        DecodedJWT jwt = verifier.verify(token);
         return jwt.getClaims();
     }
 

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tinyplan.exam.user.dao.UserMapper">
+    <sql id="userColumn">
+        user_id as id, account_name as accountName, password, role_id as roleId
+    </sql>
+    <sql id="userDetailColumn">
+        user_id as userId, user_name as realName, contact, birth, email, avatar
+    </sql>
+
+    <select id="getUsers" resultType="com.tinyplan.exam.user.entity.po.User">
+        select user_id as id, password
+        from user
+    </select>
+    <select id="getUserByUsername" resultType="com.tinyplan.exam.user.entity.po.User">
+        select <include refid="userColumn"/>
+        from user
+        where user_id = #{username} or account_name = #{username}
+    </select>
+    <select id="getUserDetailByUserId" resultType="com.tinyplan.exam.user.entity.po.UserDetail">
+        select <include refid="userDetailColumn"/>
+        from user_detail
+        where user_id = #{userId}
+    </select>
+</mapper>

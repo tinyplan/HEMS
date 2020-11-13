@@ -34,6 +34,12 @@
     </bean>
     <!-- 扫描mapper接口 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.tinyplan.exam.dao"/>
+        <property name="basePackage" value="com.tinyplan.exam.user.dao;com.tinyplan.exam.portal.dao;com.tinyplan.exam.system.dao"/>
+    </bean>
+    <!-- 上传文件 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="UTF-8"/>
+        <!--最大上传尺寸  5M -->
+        <property name="maxUploadSize" value="5242880"/>
     </bean>
 </beans>

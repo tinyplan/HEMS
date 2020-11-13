@@ -10,7 +10,7 @@ public class ApiResult<T> {
     private String message;
     private T data;
 
-    public ApiResult(int code, String message, T data) {
+    private ApiResult(int code, String message, T data) {
         this.code = code;
         this.message = message;
         this.data = data;
@@ -18,6 +18,16 @@ public class ApiResult<T> {
 
     public ApiResult(ResultStatus resultStatus, T data) {
         this(resultStatus.getCode(), resultStatus.getMessage(), data);
+    }
+
+    /**
+     * 覆盖原始信息
+     * @param resultStatus
+     * @param message 自定义消息
+     * @param data
+     */
+    public ApiResult(ResultStatus resultStatus, String message,T data) {
+        this(resultStatus.getCode(), message, data);
     }
 
     public int getCode() {

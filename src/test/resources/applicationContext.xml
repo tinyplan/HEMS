@@ -38,6 +38,6 @@
     </bean>
     <!-- 扫描mapper接口 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.tinyplan.exam.dao"/>
+        <property name="basePackage" value="com.tinyplan.exam.portal.dao"/>
     </bean>
 </beans>

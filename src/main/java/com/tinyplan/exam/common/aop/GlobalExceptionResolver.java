@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @ControllerAdvice
 public class GlobalExceptionResolver {
-
     public static final Logger LOGGER = LoggerFactory.getLogger(GlobalExceptionResolver.class);
 
     /**
@@ -31,7 +30,7 @@ public class GlobalExceptionResolver {
     @ExceptionHandler(BusinessException.class)
     @ResponseBody
     public ApiResult<Object> handleException(BusinessException e){
-        LOGGER.error(e.getMessage(), e);
+        // LOGGER.error(e.getMessage(), e);
         return new ApiResult<>(ResultStatus.RES_UNKNOWN_ERROR,null);
     }
 

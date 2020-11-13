@@ -11,8 +11,14 @@
             <AppenderRef ref="Console"/>
         </Root>
         <!-- additivity：取消上下层级的传递 -->
-        <!--<Logger name="com.study.mapper" level="debug" additivity="false">
+        <Logger name="com.tinyplan.exam.user.dao" level="debug" additivity="false">
             <AppenderRef ref="Console"/>
-        </Logger>-->
+        </Logger>
+        <Logger name="com.tinyplan.exam.portal.dao" level="debug" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Logger name="com.tinyplan.exam.system.dao" level="debug" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
     </Loggers>
 </Configuration>
