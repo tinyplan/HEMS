@@ -26,7 +26,7 @@ public class ApiResult<T> {
      * @param message 自定义消息
      * @param data
      */
-    public ApiResult(ResultStatus resultStatus, String message,T data) {
+    public ApiResult(ResultStatus resultStatus, String message, T data) {
         this(resultStatus.getCode(), message, data);
     }
 

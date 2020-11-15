@@ -11,6 +11,13 @@ import java.util.List;
 public interface UserMapper {
 
     /**
+     * 获取当前最大的ID
+     *
+     * @return 最大的ID
+     */
+    Integer getMaxId();
+
+    /**
      * 查询全部的用户
      *
      * @return 查询得到的用户列表
@@ -25,7 +32,22 @@ public interface UserMapper {
      */
     User getUserByUsername(@Param("username") String username);
 
+    /**
+     * 查找用户详细信息
+     *
+     * @param userId 用户ID
+     * @return 详细信息
+     */
     UserDetail getUserDetailByUserId(@Param("userId") String userId);
 
+    /**
+     * 增加一个新用户
+     */
+    Integer insertUser(User user);
+
+    /**
+     * 增加用户的新信息
+     */
+    Integer insertUserDetail(UserDetail detail);
 
 }

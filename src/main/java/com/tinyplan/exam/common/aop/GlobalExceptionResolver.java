@@ -31,7 +31,7 @@ public class GlobalExceptionResolver {
     @ResponseBody
     public ApiResult<Object> handleException(BusinessException e){
         // LOGGER.error(e.getMessage(), e);
-        return new ApiResult<>(ResultStatus.RES_UNKNOWN_ERROR,null);
+        return new ApiResult<>(e.getStatus(),null);
     }
 
 }

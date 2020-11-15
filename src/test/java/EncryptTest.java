@@ -15,12 +15,13 @@ public class EncryptTest {
 
     @Test
     public void test(){
-        // System.out.println(DigestUtil.md5Hex("123456").equalsIgnoreCase("e10adc3949ba59abbe56e057f20f883e"));
+        System.out.println(SecureUtil.md5("123456"));
 
-        String data = "徐哲扬";
+        /*String data = "徐哲扬";
         String s = encryptByAES(data);
         System.out.println(s);
-        System.out.println(decryptByAES(s));
+        System.out.println(decryptByAES(s));*/
+
     }
 
     /**

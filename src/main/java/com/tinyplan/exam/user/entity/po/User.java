@@ -5,7 +5,7 @@ package com.tinyplan.exam.user.entity.po;
  */
 public class User {
     // 用户ID
-    private String id;
+    private String userId;
     // 账户名
     private String accountName;
     // 密码
@@ -15,12 +15,12 @@ public class User {
 
     public User() {}
 
-    public String getId() {
-        return id;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getAccountName() {
